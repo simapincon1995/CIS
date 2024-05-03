@@ -1,0 +1,22 @@
+{
+  "name": "customer_idea_portal",
+  "version": "1.0.0",
+  "description": "cis",
+  "main": "script.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simapincon1995/CIS.git"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "simanchal padhy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simapincon1995/CIS/issues"
+  },
+  "homepage": "https://github.com/simapincon1995/CIS#readme"
+}
