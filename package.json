@@ -1,6 +1,6 @@
 {
   "name": "customer_idea_portal",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "Navex idea portal",
   "main": "script.js",
   "files": [

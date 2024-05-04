@@ -26,7 +26,7 @@ class CustomerIdeaPortal extends HTMLElement {
   
 
         .form-header {
-            background-color: #6554C0;
+            background-color: #ff4500;
             color: #fff;
             padding: 8px;
             border-bottom: 1px solid #ddd;
@@ -34,9 +34,6 @@ class CustomerIdeaPortal extends HTMLElement {
             font-weight: 600;
         }
 
-        .form-header h4 {
-            margin: 0;
-        }
 
         .form-footer {
             padding: 20px;
@@ -44,13 +41,12 @@ class CustomerIdeaPortal extends HTMLElement {
             border-top: 1px solid #ccc;
         }
         #openForm {
-            border-radius: 24px;
-            font-size: 14px;
+            font-size: 36px;
             border: none;
             outline: none;
             white-space: nowrap;
-            background: var(--ds-background-discovery-bold, #6554C0);
-            padding: var(--ds-space-100, 8px) var(--ds-space-150, 12px);
+            background: var(--ds-background-discovery-bold, #ff4500);
+            padding: var(--ds-space-100, 14px) var(--ds-space-150, 18px);
             box-shadow: var(--ds-shadow-overlay, 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31));
             transition: all 0.8s ease-in-out 0s;
             display: inline-flex;
@@ -78,12 +74,12 @@ class CustomerIdeaPortal extends HTMLElement {
     border: none;
     outline: none;
     white-space: nowrap;
-    background: var(--ds-background-discovery-bold, #6554C0);
+    background: var(--ds-background-discovery-bold, #ff4500);
     padding: var(--ds-space-100, 8px) var(--ds-space-150, 12px);
     box-shadow: var(--ds-shadow-overlay, 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31));
     transition: all 0.8s ease-in-out 0s;
-    margin-button:1rem;
-    float:right;
+    margin-button: 1rem;
+    float: right;
     cursor: pointer !important;
 }
 
@@ -122,7 +118,7 @@ class CustomerIdeaPortal extends HTMLElement {
     background-color: #fff;
     padding: 0;
     border-radius: 5px;
-    bottom: 4rem;
+    bottom: 6rem;
     right: 1rem;
     border: 1px solid #ddd;
     border-radius: 6px;
@@ -197,14 +193,15 @@ class CustomerIdeaPortal extends HTMLElement {
 
         </style>
         <div class="floating-icon">
-          <button id="openForm" class="btn btn-primary">Customer Idea Portal</button>
+          <button id="openForm" class="btn btn-primary">N</button>
         </div>
         <div id="floatingForm" class="floating-form">
         <div class="form-header">
-            <div>Navex Idea Portal</div>
+            <div>NAVEX Idea Portal</div>
         </div>
         <form id="myForm">
-        <p id="thankyou"> Thank You for your feedback </p>
+        <p id="thankyou"> Thank You for your feedback !! 
+        You are good to close the window. </p>
             <div id="form-container">
             <p class="header-text"> we would love to hear your thoughts, suggestions, 
             concerns or problems with anything so we can improve ! </p>
