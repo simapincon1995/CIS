@@ -191,7 +191,9 @@ class CustomerIdeaPortal extends HTMLElement {
 *::-webkit-scrollbar-track {
     display: none;
 }
-
+#thankyou{
+    display:none;
+}
 
         </style>
         <div class="floating-icon">
@@ -202,33 +204,35 @@ class CustomerIdeaPortal extends HTMLElement {
             <div>Navex Idea Portal</div>
         </div>
         <form id="myForm">
-        <p class="header-text"> we would love to hear your thoughts, suggestions, 
-        concerns or problems with anything so we can improve ! </p>
-        <div class="form-group" part="product-name">
-        <label for="ideaType">Select Product :</label>
-        <select class="form-control" id="ideaType">
-            <option value="feature">WhistleB</option>
-            <option value="bug">EPIM</option>
-            <option value="feedback">Policy Tech</option>
-            <!-- Add more options as needed -->
-        </select>
-    </div>
-            <div class="form-group">
-                <label for="ideaType">Select Idea:</label>
-                <select class="form-control" id="ideaType">
-                    <option value="feature">Feature Request</option>
-                    <option value="bug">Bug Report</option>
-                    <option value="feedback">General Feedback</option>
-                    <!-- Add more options as needed -->
-                </select>
-            </div>
-            <div class="form-group">
+        <p id="thankyou"> Thank You for your feedback </p>
+            <div id="form-container">
+            <p class="header-text"> we would love to hear your thoughts, suggestions, 
+            concerns or problems with anything so we can improve ! </p>
+            <div class="form-group" part="product-name">
+            <label for="productName">Select Product :</label>
+            <select class="form-control" id="productName">
+                <option value="WB">WhistleB</option>
+                <option value="EPIM">EPIM</option>
+                <option value="PT">Policy Tech</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+                <div class="form-group">
+                    <label for="ideaType">Select Idea:</label>
+                    <select class="form-control" id="ideaType">
+                        <option value="feature">Feature Request</option>
+                        <option value="bug">Bug Report</option>
+                        <option value="feedback">General Feedback</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="form-group">
                 <label for="name">Customer Name:</label>
                 <input type="text" class="form-control" id="name" placeholder="Enter your name">
             </div>
             <div class="form-group">
-                <label for="name">Organisation Name:</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                <label for="organization">Organisation Name:</label>
+                <input type="text" class="form-control" id="organization" placeholder="Enter your name">
             </div>
             <div class="form-group">
                 <label for="description">Description:</label>
@@ -240,6 +244,8 @@ class CustomerIdeaPortal extends HTMLElement {
               <div class="form-group">
               <button type="submit" class="submit-btn">Submit</button>
             </div>
+            </div>
+       
         </form>
         <div class="form-footer">
            <div>            
@@ -256,12 +262,21 @@ class CustomerIdeaPortal extends HTMLElement {
         const form = this.shadowRoot.querySelector('#myForm');
         const openFormButton = this.shadowRoot.querySelector('#openForm');
         const floatingForm = this.shadowRoot.querySelector('#floatingForm');
+        const formContainer = this.shadowRoot.querySelector('#form-container');
+        const thankyoucontainer = this.shadowRoot.querySelector('#thankyou');
 
         openFormButton.addEventListener('click', () => {
             if (floatingForm.style.display === 'block') {
                 floatingForm.style.display = 'none';
             } else {
+
                 floatingForm.style.display = 'block';
+                formContainer.style.display = 'block';
+                thankyoucontainer.style.display = 'none';
+                form.querySelector('#name').value = '';
+                form.querySelector('#organization').value = '';
+                form.querySelector('#description').value = '';
+                form.querySelector('#attachment').files = [];
 
             }
         });
@@ -272,11 +287,54 @@ class CustomerIdeaPortal extends HTMLElement {
         //     floatingForm.style.display = 'none';
         //   }
         // });
-
-        form.addEventListener('submit', (event) => {
+        form.addEventListener('submit', async (event) => {
             event.preventDefault();
-            floatingForm.style.display = 'none';
-            // Handle form submission here
+            const ideaType = form.querySelector('#ideaType').value;
+            const productName = form.querySelector('#productName').value;
+            const customerName = form.querySelector('#name').value;
+            const organizationName = form.querySelector('#organization').value;
+            const description = form.querySelector('#description').value;
+            const attachment = form.querySelector('#attachment').files[0];
+
+            // const payload = {
+            //     ideaType: ideaType,
+            //     productName: productName,
+            //     customerName: customerName,
+            //     organizationName: organizationName,
+            //     description: description,
+            //     attachment: attachment // You might want to handle file uploads differently if needed
+            // };
+
+            const payload = {
+                userId: 1,
+                id: 100,
+                title: customerName,
+                body: description,
+            };
+
+            // Here you can do something with the payload, like send it to a server
+            console.log(payload);
+
+            // Make POST request
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+                    method: 'POST',
+                    body: payload
+                });
+
+                if (response.ok) {
+                    formContainer.style.display = 'none';
+                    thankyoucontainer.style.display = 'block';
+                    console.log('Form data submitted successfully!');
+                    // Optionally, you can handle the response here
+                } else {
+                    console.error('Failed to submit form data');
+
+                }
+            } catch (error) {
+                console.error('Error submitting form data:', error);
+            }
+
         });
     }
 }
@@ -284,7 +342,7 @@ class CustomerIdeaPortal extends HTMLElement {
 // Register the custom element
 customElements.define('customer-idea-portal', CustomerIdeaPortal);
 
-(function() {
+(function () {
     const link = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
     link.setAttribute('href', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
