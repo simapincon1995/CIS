@@ -1,11 +1,11 @@
 {
   "name": "customer_idea_portal",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "cis",
   "main": "script.js",
-  "scripts": {
-    "test": "npm run test"
-  },
+  "files": [
+    "script.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/simapincon1995/CIS.git"
